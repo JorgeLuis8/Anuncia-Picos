@@ -1,0 +1,24 @@
+@page "/RecSenhaEmail"
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+        <div class="container">
+        <div class="form">
+            <h2>Recuperar Senha</h2>
+            <p>Digite seu e-mail para receber um link de redefinição de senha.</p>
+            <form id="recoveryForm">
+                <input type="email" id="email" placeholder="E-mail" required>
+                <button type="submit">Enviar</button>
+                <NavLink class="cadlink" href="/TrocarSenha">Não tem conta? Cadastre-se</NavLink>
+                <p class="message" id="message"></p>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+
+@page "/Login"
+<!DOCTYPE html>
+<html lang="Ptbr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrar no Anuncia Picos</title>
+</head>
+<body>
+    <div class="container">
+    <h2>Entrar no Anuncia Picos</h2>
+    <form id="loginForm">
+        <input type="email" id="Email" placeholder="Email" required>
+        <input type="password" id="Password" placeholder="Senha" required>
+        <button type="submit">Entrar</button>
+        <NavLink class="reclink" href="/RecSenhaEmail">Esqueceu a senha? Clique aqui</NavLink>
+        <br><br>
+       <NavLink class="cadlink" href="/Cadastro">Não tem conta? Cadastre-se</NavLink>
+
+        <p class="message" id="message"></p>
+    </form>
+</div>
+
+</body>
+</html>
