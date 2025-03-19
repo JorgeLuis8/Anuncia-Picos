@@ -1,29 +1,85 @@
 @page "/Cadastro"
-
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Crie Sua Conta</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-    <script src='main.js'></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
 </head>
 <body>
     <div class="container">
-  <h2>Cadastro no Anucia Picos</h2>
-  <form id="registrationForm">
-    <input type="text" id="Nome" placeholder="Nome" required>
-    <input type="email" id="Email" placeholder="Email" required>
-    <input type="text" id="CPF" placeholder="CPF" maxlength="14" required>
-    <input type="text" id="Telefone" placeholder="Telefone (XX) XXXXX-XXXX" maxlength="15" required>
-    <input type="password" id="Password" placeholder="Senha" required>
-    <input type="password" id="ConfirmPassword" placeholder="Confirmar Senha" required>
-    <button type="submit">Cadastrar</button>
-       <NavLink class="cadlink" href="/Login">Não tem conta? Cadastre-se</NavLink>
-    <p class="message" id="message"></p>
-  </form>
-</div>
+        <h2>Cadastro no Anuncia Picos</h2>
+        <form id="registrationForm">
+            <input type="text" id="Nome" placeholder="Nome" required />
+            <input type="email" id="Email" placeholder="Email" required />
+            <input type="text" id="CPF" placeholder="CPF" maxlength="14" required />
+            <input type="text" id="Telefone" placeholder="Telefone (XX) XXXXX-XXXX" maxlength="15" required />
+            <input type="password" id="Password" placeholder="Senha" required />
+            <input type="password" id="ConfirmPassword" placeholder="Confirmar Senha" required />
+            <button type="submit">Cadastrar</button>
+        </form>
+        <p id="message"></p>
+    </div>
+
+    <script>
+        // Obter o formulário e o elemento de mensagem
+        const form = document.getElementById('registrationForm');
+        const messageElement = document.getElementById('message');
+
+        // Função para lidar com o envio do formulário
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault(); // Previne o comportamento padrão do formulário
+
+            // Coletando os dados do formulário
+            const nome = document.getElementById('Nome').value;
+            const email = document.getElementById('Email').value;
+            const cpf = document.getElementById('CPF').value;
+            const telefone = document.getElementById('Telefone').value;
+            const password = document.getElementById('Password').value;
+            const confirmPassword = document.getElementById('ConfirmPassword').value;
+
+            // Validando senhas
+            if (password !== confirmPassword) {
+                messageElement.textContent = "As senhas não coincidem.";
+                return;
+            }
+
+            // Dados do usuário a serem enviados
+            const userData = {
+                Nome: nome,
+                Email: email,
+                CPF: cpf,
+                Telefone: telefone,
+                Password: password,
+                ConfirmPassword: confirmPassword
+            };
+
+            try {
+                // Enviando a requisição para a API
+                const response = await fetch('https://localhost:5255/swagger/Auth/cadastro', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(userData)
+                });
+
+                if (response.ok) {
+                    // Se a requisição for bem-sucedida
+                    const responseData = await response.json();
+                    messageElement.textContent = 'Cadastro realizado com sucesso!';
+                    // Redirecionar ou fazer outra ação após sucesso
+                } else {
+                    // Se houver erro na resposta da API
+                    const errorData = await response.json();
+                    messageElement.textContent = `Erro ao cadastrar: ${errorData.message}`;
+                }
+            } catch (error) {
+                // Erro ao fazer a requisição
+                messageElement.textContent = `Erro ao se conectar com a API: ${error.message}`;
+            }
+        });
+    </script>
 </body>
 </html>
