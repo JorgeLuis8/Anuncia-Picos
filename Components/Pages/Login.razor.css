@@ -1,47 +1,66 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
+    text-align: center;
     height: 100vh;
     margin: 0;
     padding: 0;
-    
 }
+
 .container {
     display: flex;
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    width: 300px;
-    align-items: center;
     justify-content: center;
     flex-direction: column;
+    align-items: center;
+    margin-right: 15rem; /* 128px = 8rem */
+    text-align: center;
 }
+
 input {
-    width: 92%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    width: 100%;
+    padding: 0.625rem; /* 10px = 0.625rem */
+    margin: 0.625rem 0; /* 10px = 0.625rem */
+    border: 0.0625rem solid #ccc; /* 1px = 0.0625rem */
+    border-radius: 0.3125rem; /* 5px = 0.3125rem */
+    display: block;
 }
+
 button {
     background-color: #007bff;
     color: white;
     border: none;
-    padding: 10px;
+    padding: 0.625rem; /* 10px = 0.625rem */
     width: 100%;
     cursor: pointer;
-    border-radius: 5px;
-    margin-bottom: 10px;
+    border-radius: 0.3125rem; /* 5px = 0.3125rem */
+    margin-bottom: 0.625rem; /* 10px = 0.625rem */
+    display: block;
 }
+
 button:hover {
     background-color: #0056b3;
 }
+
 .message {
-    margin-top: 15px;
+    margin-top: 0.9375rem; /* 15px = 0.9375rem */
     color: red;
+}
+
+h2 {
+    margin-bottom: 1.5rem;
+}
+
+/* Alinhamento vertical dos links */
+.reclink, .cadlink {
+    display: block; /* Garante que os links fiquem um abaixo do outro */
+    margin-top: 1rem; /* Espaço entre os links */
+    color: blue; /* Cor dos links */
+    text-decoration: none; /* Remove o sublinhado */
+}
+
+.reclink:hover, .cadlink:hover {
+    text-decoration: underline; /* Sublinha o link quando o mouse passa */
 }
