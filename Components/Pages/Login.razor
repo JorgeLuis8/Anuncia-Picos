@@ -1,63 +1,41 @@
-@page "/Login"
-<!DOCTYPE html>
-<html lang="Ptbr">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Entrar no Anuncia Picos</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+Antique&display=swap" rel="stylesheet">
-</head>
-
-<body>
-    <div class="login-container">
-        <div class="left-side">
-            <h1>Anuncia Picos!</h1>
-            <img src="images/Logo.png" alt="Logo Anuncia Picos">
-            <h2>Encontre as melhores oportunidades perto de você no Anuncia Picos</h2>
-            <p>"Descubra ofertas incríveis e negocie com facilidade no Anuncia Picos!"</p>
+<div class="login-container">
+    <div class="left-side">
+        <h1>Anuncia Picos!</h1>
+        <img src="images/Logo.png" alt="Logo Anuncia Picos">
+        <h2>Encontre as melhores oportunidades perto de você no Anuncia Picos</h2>
+        <p>"Descubra ofertas incríveis e negocie com facilidade no Anuncia Picos!"</p>
+    </div>
+    <div class="right-side">
+        <h3>Bem-vindo ao Anuncia Picos! Estamos felizes em tê-lo conosco.</h3>
+        <div class="logins">
+            <button class="google-btn"><i class="fab fa-google"></i> Entrar com o Google</button>
+            <button class="facebook-btn"><i class="fab fa-facebook-f"></i> Entrar com o Facebook</button>
         </div>
-        <div class="right-side">
-            <h3>Bem-vindo ao Anuncia Picos! Estamos felizes em tê-lo conosco.</h3>
-            <div class="logins">
-                <button class="google-btn"><i class="fab fa-google"></i> Entrar com o Google</button>
-                <button class="facebook-btn"><i class="fab fa-facebook-f"></i> Entrar com o Facebook</button>
+
+        <form id="loginForm">
+            <div class="input-container">
+                <label for="Email">Email ou Usuário:</label>
+                <input type="email" id="Email" placeholder="Email" required>
             </div>
 
-            <form id="loginForm">
-                <div class="input-container">
-                    <label for="Email">Email ou Usuário:</label>
-                    <input type="email" id="Email" placeholder="Email" required>
+            <div class="input-container">
+                <label for="Password">Digite sua senha:</label>
+                <div class="password-container">
+                    <input type="password" id="Password" placeholder="Senha" required>
+                    <span id="togglePassword" class="eye-icon">&#128065;</span>
                 </div>
+            </div>
 
-                <div class="input-container">
-                    <label for="Password">Digite sua senha:</label>
-                    <div class="password-container">
-                        <input type="password" id="Password" placeholder="Senha" required>
-                        <span id="togglePassword" class="eye-icon">&#128065;</span>
-                    </div>
-                </div>
+            <!-- Botão de login centralizado -->
+            <button type="submit" class="login-btn">LOGIN</button>
 
-                <!-- Div para alinhar o checkbox e o botão de login -->
-                <div class="login-options">
-    <div class="remember-container">
-        <input type="checkbox" id="termos" name="termos"> <!-- Checkbox primeiro -->
-        <label for="termos">Lembrar de mim</label> <!-- Texto após o checkbox -->
+            <!-- Botão "Esqueci minha senha" -->
+            <button type="button" class="reclink">ESQUECI MINHA SENHA!</button>
+
+
+            <div class="links">
+                <a href="/Cadastro" class="cadlink">Não tem uma conta ainda? CADASTRE-SE</a>
+            </div>
+        </form>
     </div>
-    <button type="submit" class="login-btn">LOGIN</button>
 </div>
-
-
-
-                <div class="links">
-                    <a href="/Cadastro" class="cadlink">Não tem uma conta ainda? CADASTRE-SE</a>
-                    <a href="/RecSenhaEmail" class="reclink">ESQUECI MINHA SENHA!</a>
-                </div>
-            </form>
-        </div>
-    </div>
-</body>
-
-</html>

@@ -1,12 +1,18 @@
 
-
-.login-container {
+.zen-kaku-gothic-antique-regular {
+    font-family: "Zen Kaku Gothic Antique", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .login-container {
     display: flex;
     width: 100%;
     height: 100vh;
     margin: 0;
 }
 
+/* Lado esquerdo */
 .left-side {
     display: flex;
     flex-direction: column;
@@ -21,15 +27,9 @@
     height: 100vh;
     text-align: center;
 }
-.zen-kaku-gothic-antique-regular {
-    font-family: "Zen Kaku Gothic Antique", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-  }
-  
 
 .left-side img {
-    width: 50%;
+    width: 40%;
     height: auto;
     max-width: 300px;
 }
@@ -52,6 +52,7 @@
 h1, h2, h3, p {
     margin: 0;
     padding: 0 20px;
+    text-align: center;
 }
 /* Estilo geral do formulário */
 input {
@@ -188,30 +189,26 @@ input:focus {
     color: #666;
 }
 /* Alinhamento do checkbox "Lembrar de mim" e botão de login */
+/* Alinhamento do checkbox "Lembrar de mim" e botão de login */
 .login-options {
     display: flex;
-    justify-content: space-between;  /* Garante que o botão e o checkbox fiquem nas extremidades */
+    justify-content: flex-start;  /* Coloca o botão e o checkbox lado a lado, alinhados à esquerda */
     align-items: center;  /* Alinha verticalmente os itens */
-    margin-top: 15px;
     width: 100%; /* Garante que a div ocupe toda a largura */
+    gap: 10px; /* Ajuste do espaço entre o checkbox e o botão de login */
+    margin-top: 10px;
 }
 
-/* Ajuste para o checkbox e texto "Lembrar de mim" */
-.remember-container {
+
+
+/* Alinhamento do checkbox "Lembrar de mim" e botão de login */
+.login-options {
     display: flex;
-    align-items: center;
-    gap: 0; /* Remover qualquer espaço entre o checkbox e o texto */
-    margin: 0;
-    padding: 0;
-}
-
-.remember-container input[type="checkbox"] {
-    margin: 0; /* Remove qualquer margem do checkbox */
-}
-
-.remember-container label {
-    font-size: 14px;
-    color: #666;
+    justify-content: flex-start;  /* Coloca o botão e o checkbox lado a lado, alinhados à esquerda */
+    align-items: center;  /* Alinha verticalmente os itens */
+    width: 100%; /* Garante que a div ocupe toda a largura */
+    gap: 15px; /* Espaço entre o checkbox e o botão de login */
+    margin-top: 15px;
 }
 
 /* Ajuste no botão de login */
@@ -227,9 +224,57 @@ input:focus {
     width: 180px; /* Largura ajustada */
     cursor: pointer;
     transition: all 0.3s ease;
-    margin-left: 10px;  /* Espaçamento entre o checkbox e o botão */
 }
 
 .login-btn:hover {
     background-color: #5a51c0; /* Cor de fundo ao passar o mouse */
+}
+
+/* Ajuste para aumentar o espaçamento entre os botões de login */
+.logins button {
+    margin: 15px 0; /* Aumentei a margem entre os botões */
+}
+
+/* Ajuste para o botão "Esqueci minha senha" como um botão */
+/* Ajuste para o botão "Esqueci minha senha" */
+.reclink {
+    display: inline-block;
+    padding: 10px 30px; /* Menos espaço horizontal e mais compacto */
+    font-size: 14px; /* Ajuste o tamanho da fonte para se alinhar melhor com o botão */
+    font-weight: bold;
+    background-color: #7B76F1; /* Cor igual ao do botão de login */
+    color: white;
+    text-decoration: none; /* Remove o sublinhado do link */
+    border-radius: 25px; /* Arredondamento das bordas */
+    text-align: center;
+    width: auto; /* Ajuste automático de largura */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px; /* Espaçamento entre o botão "Esqueci minha senha" e o formulário */
+    margin-left: auto; /* Centraliza o botão */
+    margin-right: auto; /* Centraliza o botão */
+    border: none;
+}
+
+/* Efeito de hover no botão "Esqueci minha senha" */
+.reclink:hover {
+    background-color: #5a51c0; /* Cor de fundo ao passar o mouse */
+    text-decoration: none;
+}
+
+
+/* Ajuste para o link "Cadastrar-se" */
+.cadlink {
+    display: inline-block;
+    text-align: center;
+    margin-top: 15px; /* Ajuste do espaçamento entre os links */
+}
+
+/* Estilo para o link "Cadastrar-se" */
+.cadlink {
+    display: inline-block;
+    text-align: center;
+    margin-top: 15px; /* Espaçamento entre o link e o botão */
+    width: 100%; /* Garante que ocupe toda a largura disponível */
+    text-align: center; /* Centraliza o texto */
 }
