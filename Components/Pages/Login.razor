@@ -1,4 +1,3 @@
-
 @page "/Login"
 <!DOCTYPE html>
 <html lang="Ptbr">
@@ -8,18 +7,25 @@
     <title>Entrar no Anuncia Picos</title>
 </head>
 <body>
-    <div class="container">
-    <h2>Entrar no Anuncia Picos</h2>
-    <form id="loginForm">
-        <input type="email" id="Email" placeholder="Email" required>
-        <input type="password" id="Password" placeholder="Senha" required>
-        <button type="submit">Entrar</button>
-        <a href="/RecSenhaEmail" class="reclink">Esqueceu a senha? Clique aqui</a>
-    
-        <a href="/Cadastro" class="cadlink">Não Possui uma conta? Cadastre-se aqui</a>
-        <p class="message" id="message"></p>
-    </form>
-</div>
-
+    <div class="login-container">
+        <div class="left-side">
+            <h1>Anuncia Picos!</h1>
+            <img src="images/Logo.png" alt="Logo Anuncia Picos">
+            <h2>Encontre as melhores oportunidades perto device você no Anuncia Picos</h2>
+            <p>"Descubra ofertas incriveis em negocie com facilidade no Anuncia Picos!"</p>
+        </div>
+        <div class="right-side">
+            <h3>Bem-vindo ao Anuncia Picos! Estamos felizes em tê-lo conosco.</h3>
+            
+            <form id="loginForm">
+                <input type="email" id="Email" placeholder="Email" required>
+                <input type="password" id="Password" placeholder="Senha" required>
+                <button type="submit">Entrar</button>
+                <a href="/RecSenhaEmail" class="reclink">Esqueceu a senha? Clique aqui</a>
+                <a href="/Cadastro" class="cadlink">Não Possui uma conta? Cadastre-se aqui</a>
+                <p class="message" id="message"></p>
+            </form>
+        </div>
+    </div>
 </body>
 </html>

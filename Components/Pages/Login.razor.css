@@ -1,66 +1,73 @@
 body {
-    font-family: sans-serif;
-
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    text-align: center;
-    height: 100vh;
     margin: 0;
     padding: 0;
+    height: 100vh;
+    font-family: Arial, sans-serif;
 }
 
-.container {
+.login-container {
     display: flex;
-    justify-content: center;
+    width: 100%;
+    height: 100vh;
+}
+
+.left-side {
+    display: flex;
     flex-direction: column;
     align-items: center;
-    margin-right: 15rem; /* 128px = 8rem */
-    text-align: center;
-}
-
-input {
-    width: 100%;
-    padding: 0.625rem; /* 10px = 0.625rem */
-    margin: 0.625rem 0; /* 10px = 0.625rem */
-    border: 0.0625rem solid #ccc; /* 1px = 0.0625rem */
-    border-radius: 0.3125rem; /* 5px = 0.3125rem */
-    display: block;
-}
-
-button {
-    background-color: #007bff;
+    gap: 3rem;
     color: white;
-    border: none;
-    padding: 0.625rem; /* 10px = 0.625rem */
+    width: 50%;
+    justify-content: center;
+    background-image: url('images/background.png');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    text-align: center;
+    padding: 0; /* Garante que não há padding */
+}
+
+.left-side img {
+    width: 50%;
+    height: auto;
+    max-width: 300px; /* Limita o tamanho máximo */
+}
+
+.right-side {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    padding: 20px;
+    box-sizing: border-box; /* Garante que o padding não aumente a largura */
+}
+
+input, button {
     width: 100%;
-    cursor: pointer;
-    border-radius: 0.3125rem; /* 5px = 0.3125rem */
-    margin-bottom: 0.625rem; /* 10px = 0.625rem */
+    max-width: 400px; /* Limita a largura dos inputs */
+    padding: 0.625rem;
+    margin: 0.625rem 0;
+    border: 1px solid #ccc;
+    border-radius: 0.3125rem;
     display: block;
+    box-sizing: border-box;
 }
 
-button:hover {
-    background-color: #0056b3;
-}
-
-.message {
-    margin-top: 0.9375rem; /* 15px = 0.9375rem */
-    color: red;
-}
-
-h2 {
-    margin-bottom: 1.5rem;
-}
-
-/* Alinhamento vertical dos links */
 .reclink, .cadlink {
-    display: block; /* Garante que os links fiquem um abaixo do outro */
-    margin-top: 1rem; /* Espaço entre os links */
-    color: blue; /* Cor dos links */
-    text-decoration: none; /* Remove o sublinhado */
+    display: block;
+    margin-top: 1rem;
+    color: blue;
+    text-decoration: none;
+    text-align: center;
 }
 
 .reclink:hover, .cadlink:hover {
-    text-decoration: underline; /* Sublinha o link quando o mouse passa */
+    text-decoration: underline;
+}
+
+h1, h2, h3, p {
+    margin: 0;
+    padding: 0 20px; /* Adiciona um pouco de padding apenas no texto */
 }
