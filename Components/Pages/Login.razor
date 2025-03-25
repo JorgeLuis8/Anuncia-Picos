@@ -1,11 +1,13 @@
 @page "/Login"
 <!DOCTYPE html>
 <html lang="Ptbr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Entrar no Anuncia Picos</title>
 </head>
+
 <body>
     <div class="login-container">
         <div class="left-side">
@@ -16,11 +18,21 @@
         </div>
         <div class="right-side">
             <h3>Bem-vindo ao Anuncia Picos! Estamos felizes em tê-lo conosco.</h3>
-            
+            <div class="logins">
+                <a href=""><img src="" alt="">Entrar com o Google</a>
+                <a href=""><img src="" alt="">Entrar com o Facebook</a>
+            </div>
             <form id="loginForm">
                 <input type="email" id="Email" placeholder="Email" required>
                 <input type="password" id="Password" placeholder="Senha" required>
+                <div>
                 <button type="submit">Entrar</button>
+              
+                    
+                        <input type="checkbox" id="termos" name="termos">
+                        Lembrar de mim.
+                    </div>
+                
                 <a href="/RecSenhaEmail" class="reclink">Esqueceu a senha? Clique aqui</a>
                 <a href="/Cadastro" class="cadlink">Não Possui uma conta? Cadastre-se aqui</a>
                 <p class="message" id="message"></p>
@@ -28,4 +40,5 @@
         </div>
     </div>
 </body>
+
 </html>
