@@ -1,29 +1,51 @@
 @page "/Cadastro"
+<div class="register-container">
+    <div class="left-side">
+        <h1>Anuncia Picos!</h1>
+        <img src="images/Logo.png" alt="Logo Anuncia Picos">
+        <h2>Obrigado por fazer parte do Anuncia Picos! Estamos felizes em tê-lo conosco </h2>
+        <p>"Descubra ofertas incríveis e negocie com facilidade no Anuncia Picos!"</p>
+    </div>
+    <div class="right-side">
+        <h3>Cadastre-se gratuitamente e aproveite as melhores oportunidades</h3>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Crie Sua Conta</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-    <script src='main.js'></script>
-</head>
-<body>
-    <div class="container">
-  <h2>Cadastro no Anucia Picos</h2>
-  <form id="registrationForm">
-    <input type="text" id="Nome" placeholder="Nome" required>
-    <input type="email" id="Email" placeholder="Email" required>
-    <input type="text" id="CPF" placeholder="CPF" maxlength="14" required>
-    <input type="text" id="Telefone" placeholder="Telefone (XX) XXXXX-XXXX" maxlength="15" required>
-    <input type="password" id="Password" placeholder="Senha" required>
-    <input type="password" id="ConfirmPassword" placeholder="Confirmar Senha" required>
-    <button type="submit">Cadastrar</button>
-       <NavLink class="cadlink" href="/Login">Não tem conta? Cadastre-se</NavLink>
-    <p class="message" id="message"></p>
-  </form>
+        <form id="registerForm">
+            <div class="input-container">
+                <label for="Name">Nome Completo:</label>
+                <input type="text" id="Name" placeholder="Digite seu nome completo" required>
+            </div>
+
+            <div class="input-container">
+                <label for="Email">Email:</label>
+                <input type="email" id="Email" placeholder="Email" required>
+            </div>
+
+            <div class="input-container">
+                <label for="CPF">CPF:</label>
+                <input type="text" id="CPF" placeholder="Digite seu CPF" required>
+            </div>
+
+            <div class="input-container">
+                <label for="Phone">Telefone:</label>
+                <input type="tel" id="Phone" placeholder="Digite seu telefone" required>
+            </div>
+
+            <!-- Senha e Confirmação de Senha movidos para o final -->
+            <div class="input-container">
+                <label for="Password">Senha:</label>
+                <input type="password" id="Password" placeholder="Digite sua senha" required>
+            </div>
+
+            <div class="input-container">
+                <label for="ConfirmPassword">Confirme sua Senha:</label>
+                <input type="password" id="ConfirmPassword" placeholder="Confirme sua senha" required>
+            </div>
+
+            <div class="form-actions">
+                <a href="/Login" class="cadlink">Já tem uma conta? FAÇA LOGIN</a>
+                <button type="submit" class="register-btn">CADASTRAR</button>
+            </div>
+
+        </form>
+    </div>
 </div>
-</body>
-</html>
