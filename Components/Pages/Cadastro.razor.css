@@ -175,7 +175,7 @@ input:focus {
 /* Responsividade para telas menores (max-width: 768px) */
 @media screen and (max-width: 768px) {
   h1 {
-    margin-top: 20px; /* Adiciona espaçamento acima do título */
+    margin-top: 21px; /* Adiciona espaçamento acima do título */
     margin-bottom: 20px; /* Ajuste para o espaço abaixo do título */
   }
   p{
