@@ -172,3 +172,44 @@ input:focus {
 .cadlink:hover {
   text-decoration: underline;
 }
+/* Responsividade para telas menores (max-width: 768px) */
+@media screen and (max-width: 768px) {
+  .register-container {
+    flex-direction: column;  /* Organiza os elementos na coluna */
+    height: auto;  /* Garante que o container tenha a altura ajustada */
+  }
+
+  .left-side, .right-side {
+    width: 100%;
+    height: auto; /* Ajusta a altura conforme o conteúdo */
+  }
+
+  .left-side img {
+    width: 60%;  /* Ajusta o tamanho da imagem */
+  }
+
+  .right-side {
+    padding: 20px;
+    gap: 15px;
+  }
+
+  /* Ajusta o tamanho dos campos e botões */
+  .input-container label {
+    font-size: 14px; /* Ajusta o tamanho da fonte */
+  }
+
+  input {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  .register-btn {
+    font-size: 15px;
+    padding: 10px 20px;
+  }
+
+  .reclink, .cadlink {
+    font-size: 15px;
+    padding: 10px 20px;
+  }
+}
