@@ -370,80 +370,88 @@ body, html {
   }
 }
 /* Responsividade para telas menores (max-width: 768px) */
+/* Responsividade para telas menores (max-width: 768px) */
 @media screen and (max-width: 768px) {
-    .login-container {
-      flex-direction: row;  /* Mantém a divisão lado a lado */
+  .login-container {
+      flex-direction: column;  /* Organiza os elementos na coluna */
       height: auto;  /* Ajusta a altura conforme o conteúdo */
-    }
-  
-    .left-side, .right-side {
-      width: 50%;  /* Mantém a largura de cada lado igual */
+  }
+
+  .left-side, .right-side {
+      width: 100%;  /* Garante que cada lado ocupe toda a largura */
       height: auto;  /* Ajusta a altura conforme o conteúdo */
-    }
-  
-    .right-side {
+  }
+
+  .left-side {
+      margin-bottom: 20px; /* Dá um espaço entre a esquerda e o formulário */
+  }
+
+  .right-side {
       padding: 20px;
       gap: 20px;
       text-align: center;  /* Centraliza o texto */
-    }
-  
-    .logins button {
+  }
+
+  .logins button {
       width: 100%;  /* Garante que os botões de login ocupem toda a largura */
       margin: 10px 0; /* Espaçamento entre os botões */
-    }
-  
-    .login-btn {
+  }
+
+  .login-btn {
       width: 100%;  /* Garante que o botão de login ocupe toda a largura */
       margin-top: 20px;
-    }
-  
-    .reclink {
+  }
+
+  .reclink {
       width: 100%;  /* Faz o link ocupar toda a largura */
       margin-top: 15px;
-    }
-  
-    .cadlink {
+  }
+
+  .cadlink {
       width: 100%;  /* Garante que o link "Cadastrar-se" ocupe toda a largura */
       margin-top: 10px;
-    }
   }
-  
-  /* Responsividade para telas muito pequenas (max-width: 480px) */
-  @media screen and (max-width: 480px) {
-    .login-container {
-      flex-direction: row;  /* Mantém o layout lado a lado */
+}
+
+/* Responsividade para telas muito pequenas (max-width: 480px) */
+@media screen and (max-width: 480px) {
+  .login-container {
+      flex-direction: column;  /* Organiza os elementos na coluna */
       height: auto;
-    }
-  
-    .left-side, .right-side {
-      width: 50%;  /* Continua com a largura de 50% para cada lado */
+  }
+
+  .left-side, .right-side {
+      width: 100%;  /* Garante que cada lado ocupe toda a largura */
       height: auto;
-    }
-  
-    .right-side {
+  }
+
+  .left-side {
+      margin-bottom: 20px; /* Dá um espaço entre a esquerda e o formulário */
+  }
+
+  .right-side {
       padding: 15px;
       gap: 10px;
       text-align: center;  /* Centraliza os textos e botões */
-    }
-  
-    .logins button {
+  }
+
+  .logins button {
       width: 100%;  /* Garante que os botões de login ocupem toda a largura */
       margin: 10px 0;
-    }
-  
-    .login-btn {
+  }
+
+  .login-btn {
       width: 100%;  /* Garante que o botão de login ocupe toda a largura */
       margin-top: 15px;
-    }
-  
-    .reclink {
+  }
+
+  .reclink {
       width: 100%;  /* Faz o link ocupar toda a largura */
       margin-top: 10px;
-    }
-  
-    .cadlink {
+  }
+
+  .cadlink {
       width: 100%;  /* Faz o link "Cadastrar-se" ocupar toda a largura */
       margin-top: 10px;
-    }
   }
-  
+}
