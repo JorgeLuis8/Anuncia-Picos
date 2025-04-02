@@ -54,7 +54,7 @@ body, html {
   box-sizing: border-box;
   padding: 20px;
   height: 100vh; /* Garante que a área direita ocupe toda a altura da tela */
-  overflow: hidden; /* Impede rolagem */
+
 }
 
 /* Título principal */
