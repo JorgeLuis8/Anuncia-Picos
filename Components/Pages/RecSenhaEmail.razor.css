@@ -108,9 +108,9 @@ body, html {
   }
   
   input:focus {
-    border-bottom-color: #7B76F1; /* Cor da borda ao focar */
+    
     outline: none;
-    box-shadow: 0 0 5px rgba(123, 118, 241, 0.5);
+    border-bottom-color: #4285F4; /* Cor da borda ao focar */
   }
   
   /* Estilo para o botão de recuperação de senha */
@@ -171,7 +171,7 @@ body, html {
     text-decoration: underline;
   }
 /* Responsividade para telas menores (max-width: 768px) */
-@media (max-width: 768px) {
+@media (max-width: 1050px) {
   .register-container {
     flex-direction: column; /* Organiza os elementos na coluna */
   }
