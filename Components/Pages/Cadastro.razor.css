@@ -173,7 +173,7 @@ input:focus {
   text-decoration: underline;
 }
 /* Responsividade para telas menores (max-width: 768px) */
-@media screen and (max-width: 050px) {
+@media screen and (max-width: 1050px) {
   h1 {
     margin-top: 21px; /* Adiciona espaçamento acima do título */
     margin-bottom: 20px; /* Ajuste para o espaço abaixo do título */
@@ -223,24 +223,25 @@ input:focus {
     padding: 10px 20px;
   }
 }
+
 /* Responsividade para telas com largura igual ou superior a 1918px */
 @media screen and (min-width: 1918px) {
   .input-container label {
-    font-size: 13px;  /* Aumenta o tamanho da fonte dos labels */
+    font-size: 16px;  /* Aumenta o tamanho da fonte dos labels */
   }
 
   input {
-    padding: 13px;  /* Aumenta o padding para os campos de entrada */
-    font-size: 13px; /* Aumenta o tamanho da fonte para os campos de entrada */
+    padding: 16px;  /* Aumenta o padding para os campos de entrada */
+    font-size: 18px; /* Aumenta o tamanho da fonte para os campos de entrada */
   }
 
   .register-btn {
-    font-size: 13px; /* Aumenta o tamanho da fonte do botão */
-    padding: 13px 30px; /* Aumenta o tamanho do botão */
+    font-size: 18px; /* Aumenta o tamanho da fonte do botão */
+    padding: 15px 30px; /* Aumenta o tamanho do botão */
   }
 
   .reclink, .cadlink {
-    font-size: 14px; /* Aumenta o tamanho da fonte dos links */
+    font-size: 18px; /* Aumenta o tamanho da fonte dos links */
     padding: 12px 30px; /* Aumenta o padding dos links */
   }
 }
