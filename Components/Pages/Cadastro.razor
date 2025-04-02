@@ -1,4 +1,5 @@
 @page "/Cadastro"
+@using System.Text.RegularExpressions
 <div class="register-container">
     <div class="left-side">
         <h1>Anuncia Picos!</h1>
@@ -9,7 +10,7 @@
     <div class="right-side">
         <h3>Cadastre-se gratuitamente e aproveite as melhores oportunidades</h3>
 
-        <form id="registerForm">
+        <form id="registerForm" @onsubmit="HandleSubmit">
             <div class="input-container">
                 <label for="Name">Nome Completo:</label>
                 <input type="text" id="Name" placeholder="Digite seu nome completo" required>
@@ -22,12 +23,12 @@
 
             <div class="input-container">
                 <label for="CPF">CPF:</label>
-                <input type="text" id="CPF" placeholder="Digite seu CPF" required>
+                <input type="text" id="CPF" placeholder="Digite seu CPF" maxlength="11" pattern="\d{11}" required>
             </div>
 
             <div class="input-container">
                 <label for="Phone">Telefone:</label>
-                <input type="tel" id="Phone" placeholder="Digite seu telefone" required>
+                <input type="tel" id="Phone" placeholder="Digite seu telefone" maxlength="11" pattern="\d{11}" required>
             </div>
 
             <!-- Senha e Confirmação de Senha movidos para o final -->
@@ -49,3 +50,57 @@
         </form>
     </div>
 </div>
+
+@code {
+    private UserModel user = new UserModel();
+
+    // Método para validar CPF usando regex
+    private bool IsValidCPF(string cpf)
+    {
+        // Verifica se o CPF é nulo ou vazio antes de validar
+        if (string.IsNullOrEmpty(cpf))
+            return false;
+
+        // Regex para validar CPF (apenas formato básico, sem validação de CPF real)
+        string cpfPattern = @"^\d{3}\.\d{3}\.\d{3}-\d{2}$"; // Exemplo de formato 123.456.789-00
+        return Regex.IsMatch(cpf, cpfPattern);
+    }
+
+    // Método para validar Telefone usando regex
+    private bool IsValidPhone(string phone)
+    {
+        // Verifica se o telefone é nulo ou vazio antes de validar
+        if (string.IsNullOrEmpty(phone))
+            return false;
+
+        // Regex para validar telefone
+        string phonePattern = @"^\(\d{2}\) \d{4,5}-\d{4}$"; // Exemplo de formato (11) 91234-5678
+        return Regex.IsMatch(phone, phonePattern);
+    }
+
+    // Método de envio do formulário
+    private void HandleSubmit()
+    {
+        if (!string.IsNullOrEmpty(user.CPF) && !string.IsNullOrEmpty(user.Phone) && IsValidCPF(user.CPF) && IsValidPhone(user.Phone))
+        {
+            // Se CPF e telefone forem válidos, você pode continuar com o envio do formulário
+            Console.WriteLine("Formulário enviado!");
+            // Aqui você pode implementar a lógica de envio de dados (por exemplo, armazenar no banco de dados, etc.)
+        }
+        else
+        {
+            // Se CPF ou telefone forem inválidos, você pode informar ao usuário
+            Console.WriteLine("Erro no formulário! CPF ou telefone inválidos.");
+        }
+    }
+
+    public class UserModel
+    {
+        public string? Name { get; set; }
+        public string? Email { get; set; }
+        public string? CPF { get; set; }
+        public string? Phone { get; set; }
+        public string? Password { get; set; }
+        public string? ConfirmPassword { get; set; }
+    }
+}

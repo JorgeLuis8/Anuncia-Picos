@@ -115,7 +115,14 @@ input:focus {
     margin-right: 10px;
     font-size: 18px;
 }
+.facebook-btn:hover{
+  background-color: rgba(94, 94, 212, 0.329);
 
+}
+
+.google-btn:hover{
+  background-color: rgba(94, 94, 212, 0.329);
+}
 /* Sem efeito de hover */
 
 /* Estilo dos botões de login */
@@ -140,7 +147,7 @@ input:focus {
 
 /* Estilo do link "Cadastrar-se" */
 .cadlink {
-    color: #4A90E2; /* Cor do texto do link */
+    color: #7B76F1; /* Cor do texto do link */
     text-decoration: none;
     font-size: 14px;
     font-weight: bold;
