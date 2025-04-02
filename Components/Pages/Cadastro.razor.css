@@ -98,7 +98,7 @@ form {
 /* Estilo dos inputs dentro do formulário */
 input {
   width: 100%;
-  padding: 6px; /* Reduz o padding dos campos */
+  padding: 14px; /* Reduz o padding dos campos */
   margin: 0;
   border: none;
   border-bottom: 2px solid #ddd; /* Borda apenas embaixo */
@@ -108,9 +108,9 @@ input {
 }
 
 input:focus {
-  border-bottom-color: #7B76F1; /* Cor da borda ao focar */
+  border-bottom-color: none;
   outline: none;
-  box-shadow: 0 0 5px rgba(123, 118, 241, 0.5);
+  border-bottom-color: #4285F4; /* Cor da borda ao focar */
 }
 
 /* Estilo para o botão de cadastro */
@@ -173,7 +173,7 @@ input:focus {
   text-decoration: underline;
 }
 /* Responsividade para telas menores (max-width: 768px) */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1050px) {
   h1 {
     margin-top: 21px; /* Adiciona espaçamento acima do título */
     margin-bottom: 20px; /* Ajuste para o espaço abaixo do título */

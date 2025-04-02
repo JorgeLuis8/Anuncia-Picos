@@ -286,8 +286,8 @@ body, html {
   overflow: hidden; /* Impede rolagem da página */
 }
 
-/* Responsividade para telas menores (max-width: 768px) */
-@media screen and (max-width: 768px) {
+/* Responsividade para telas menores (max-width: 1000px) */
+@media screen and (max-width: 1050px) {
   .login-container {
     flex-direction: column;  /* Organiza os elementos na coluna */
     height: auto;  /* Garante que o container tenha a altura ajustada */
@@ -296,34 +296,31 @@ body, html {
   .left-side, .right-side {
     width: 100%;
     height: auto;
-  }
-
-  .left-side img {
-    width: 60%;  /* Ajusta o tamanho da imagem */
   }
 
   .right-side {
     padding: 20px;
     gap: 15px;
+    text-align: center; /* Centraliza os botões */
   }
 
-  /* Ajusta o tamanho dos campos e botões */
-  .input-container label {
-    font-size: 14px; /* Ajusta o tamanho da fonte */
+  .google-btn, .facebook-btn {
+    width: 80%; /* Ajusta a largura para que os botões não fiquem gigantes */
+    margin: 10px 0; /* Adiciona espaçamento entre os botões */
   }
 
-  input {
-    padding: 8px;
-    font-size: 14px;
+  .login-btn, .google-btn, .facebook-btn {
+    font-size: 16px;
+    padding: 12px 20px;
   }
 
   .login-btn {
-    font-size: 15px;
-    padding: 10px 20px;
+    font-size: 16px;
+    padding: 12px 20px;
   }
 
   .reclink, .cadlink {
-    font-size: 15px;
+    font-size: 14px;
     padding: 10px 20px;
   }
 }
@@ -332,7 +329,7 @@ body, html {
 @media screen and (max-width: 480px) {
   .login-container {
     flex-direction: column;  /* Organiza os elementos na coluna */
-    height: auto;  /* Garante que o container tenha a altura ajustada */
+    height: auto;
   }
 
   .left-side, .right-side {
@@ -340,23 +337,15 @@ body, html {
     height: auto;
   }
 
-  .left-side img {
-    width: 70%;  /* Ajusta o tamanho da imagem */
-  }
-
   .right-side {
     padding: 15px;
     gap: 10px;
+    text-align: center; /* Centraliza os botões */
   }
 
-  /* Ajusta o tamanho dos campos e botões */
-  .input-container label {
-    font-size: 14px; /* Ajusta o tamanho da fonte */
-  }
-
-  input {
-    padding: 8px;
-    font-size: 14px;
+  .google-btn, .facebook-btn {
+    width: 90%; /* Ajusta a largura para 90% em telas menores */
+    margin: 10px 0; /* Adiciona espaçamento entre os botões */
   }
 
   .login-btn {
@@ -366,102 +355,6 @@ body, html {
 
   .reclink, .cadlink {
     font-size: 14px;
-    padding: 10px 20px;
-  }
-}
-/* Responsividade para telas menores (max-width: 768px) */
-/* Responsividade para telas menores (max-width: 768px) */
-@media screen and (max-width: 768px) {
-  .login-container {
-      flex-direction: column;  /* Organiza os elementos na coluna */
-      height: auto;  /* Ajusta a altura conforme o conteúdo */
-  }
-/* Ajustes para o título "Anuncia Picos!" */
-h1 {
-  margin-top: 20px; /* Adiciona espaçamento acima do título */
-  margin-bottom: 20px; /* Ajuste para o espaço abaixo do título */
-}
-p{
-  margin-top: 21px; /* Adiciona espaçamento acima do título */
-  margin-bottom: 20px; /* Ajuste para o espaço abaixo do título */
-}
-
-  .left-side, .right-side {
-      width: 100%;  /* Garante que cada lado ocupe toda a largura */
-      height: auto;  /* Ajusta a altura conforme o conteúdo */
-  }
-
-  .left-side {
-      margin-bottom: 20px; /* Dá um espaço entre a esquerda e o formulário */
-  }
-
-  .right-side {
-      padding: 20px;
-      gap: 20px;
-      text-align: center;  /* Centraliza o texto */
-  }
-
-  .logins button {
-      width: 100%;  /* Garante que os botões de login ocupem toda a largura */
-      margin: 10px 0; /* Espaçamento entre os botões */
-  }
-
-  .login-btn {
-      width: 100%;  /* Garante que o botão de login ocupe toda a largura */
-      margin-top: 20px;
-  }
-
-  .reclink {
-      width: 100%;  /* Faz o link ocupar toda a largura */
-      margin-top: 15px;
-  }
-
-  .cadlink {
-      width: 100%;  /* Garante que o link "Cadastrar-se" ocupe toda a largura */
-      margin-top: 10px;
-  }
-}
-
-/* Responsividade para telas muito pequenas (max-width: 480px) */
-@media screen and (max-width: 480px) {
-  
-  .login-container {
-      flex-direction: column;  /* Organiza os elementos na coluna */
-      height: auto;
-  }
-
-  .left-side, .right-side {
-      width: 100%;  /* Garante que cada lado ocupe toda a largura */
-      height: auto;
-  }
-
-  .left-side {
-      margin-bottom: 20px; /* Dá um espaço entre a esquerda e o formulário */
-  }
-
-  .right-side {
-      padding: 15px;
-      gap: 10px;
-      text-align: center;  /* Centraliza os textos e botões */
-  }
-
-  .logins button {
-      width: 100%;  /* Garante que os botões de login ocupem toda a largura */
-      margin: 10px 0;
-  }
-
-  .login-btn {
-      width: 100%;  /* Garante que o botão de login ocupe toda a largura */
-      margin-top: 15px;
-  }
-
-  .reclink {
-      width: 100%;  /* Faz o link ocupar toda a largura */
-      margin-top: 10px;
-  }
-
-  .cadlink {
-      width: 100%;  /* Faz o link "Cadastrar-se" ocupar toda a largura */
-      margin-top: 10px;
+    padding: 8px 20px;
   }
 }
