@@ -214,3 +214,23 @@ input:focus {
       font-size: 12px; /* Ajuste o tamanho da fonte para telas menores */
   }
 }
+@media screen and (min-width: 1918px) {
+  .input-container label {
+    font-size: 13px;  /* Aumenta o tamanho da fonte dos labels */
+  }
+
+  input {
+    padding: 14px;  /* Aumenta o padding para os campos de entrada */
+    font-size: 14px; /* Aumenta o tamanho da fonte para os campos de entrada */
+  }
+
+  .register-btn {
+    font-size: 13px; /* Aumenta o tamanho da fonte do botão */
+    padding: 13px 30px; /* Aumenta o tamanho do botão */
+  }
+
+  .reclink, .cadlink {
+    font-size: 14px; /* Aumenta o tamanho da fonte dos links */
+    padding: 12px 30px; /* Aumenta o padding dos links */
+  }
+}
