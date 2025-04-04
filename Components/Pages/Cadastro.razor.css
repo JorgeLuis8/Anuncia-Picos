@@ -66,7 +66,7 @@ h1, h2, h3, p {
 
 /* Adicionando o tamanho específico para o h3 */
 h3 {
-  font-size: 28px;  /* Ajuste o tamanho conforme necessário */
+  font-size: 20px;  /* Ajuste o tamanho conforme necessário */
   margin-bottom: 20px; /* Adiciona espaçamento abaixo do h3 */
 }
 
@@ -244,4 +244,8 @@ input:focus {
     font-size: 18px; /* Aumenta o tamanho da fonte dos links */
     padding: 12px 30px; /* Aumenta o padding dos links */
   }
+}
+
+#statusMessage{
+  font-size: 10px !important;
 }
