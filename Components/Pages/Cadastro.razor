@@ -1,5 +1,5 @@
 @page "/Cadastro"
-@inject HttpClient Http
+@inject IJSRuntime JS
 
 <div class="register-container">
     <div class="left-side">
@@ -8,43 +8,44 @@
         <h2>Obrigado por fazer parte do Anuncia Picos! Estamos felizes em tê-lo conosco </h2>
         <p>"Descubra ofertas incríveis e negocie com facilidade no Anuncia Picos!"</p>
     </div>
+
     <div class="right-side">
         <h3>Cadastre-se gratuitamente e aproveite as melhores oportunidades</h3>
 
-        <form @onsubmit="HandleSubmit">
+        <form onsubmit="return false;">
             <div class="input-container">
                 <label for="Name">Nome Completo:</label>
-                <input type="text" id="Name" @bind="user.Name" placeholder="Digite seu nome completo" required>
+                <input type="text" id="Name" @bind="user.Name" required />
             </div>
 
             <div class="input-container">
                 <label for="Email">Email:</label>
-                <input type="email" id="Email" @bind="user.Email" placeholder="Email" required>
+                <input type="email" id="Email" @bind="user.Email" required />
             </div>
 
             <div class="input-container">
                 <label for="CPF">CPF:</label>
-                <input type="text" id="CPF" @bind="user.CPF" placeholder="Digite seu CPF" maxlength="11" required>
+                <input type="text" id="CPF" @bind="user.CPF" maxlength="11" required />
             </div>
 
             <div class="input-container">
                 <label for="Phone">Telefone:</label>
-                <input type="tel" id="Phone" @bind="user.Phone" placeholder="Digite seu telefone" maxlength="11" required>
+                <input type="tel" id="Phone" @bind="user.Phone" maxlength="11" required />
             </div>
 
             <div class="input-container">
                 <label for="Password">Senha:</label>
-                <input type="password" id="Password" @bind="user.Password" placeholder="Digite sua senha" required>
+                <input type="password" id="Password" @bind="user.Password" required />
             </div>
 
             <div class="input-container">
                 <label for="ConfirmPassword">Confirme sua Senha:</label>
-                <input type="password" id="ConfirmPassword" @bind="user.ConfirmPassword" placeholder="Confirme sua senha" required>
+                <input type="password" id="ConfirmPassword" @bind="user.ConfirmPassword" required />
             </div>
 
             <div class="form-actions">
                 <a href="/Login" class="cadlink">Já tem uma conta? FAÇA LOGIN</a>
-                <button type="submit" class="register-btn">CADASTRAR</button>
+                <button type="button" class="register-btn" @onclick="SubmitWithJS">CADASTRAR</button>
             </div>
         </form>
     </div>
@@ -53,27 +54,9 @@
 @code {
     private UserModel user = new UserModel();
 
-    private async Task HandleSubmit()
+    private async Task SubmitWithJS()
     {
-        try
-        {
-            var response = await Http.PostAsJsonAsync("http://localhost:5255//auth/cadastro", user);
-
-            if (response.IsSuccessStatusCode)
-            {
-                Console.WriteLine("Cadastro realizado com sucesso!");
-                // redirecionamento ou mensagem aqui
-            }
-            else
-            {
-                Console.WriteLine("Erro ao cadastrar usuário.");
-                // mensagem de erro aqui
-            }
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Erro: {ex.Message}");
-        }
+        await JS.InvokeVoidAsync("sendRegisterData", user);
     }
 
     public class UserModel
@@ -86,3 +69,31 @@
         public string? ConfirmPassword { get; set; }
     }
 }
+<script>
+    window.sendRegisterData = async function (user) {
+        console.log("📤 Enviando dados para o servidor:", user);
+
+        try {
+            const response = await fetch("http://localhost:5255//auth/cadastro", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(user)
+            });
+
+            if (response.ok) {
+                const result = await response.json();
+                console.log("✅ Cadastro realizado com sucesso!", result);
+                alert("Cadastro realizado com sucesso!");
+            } else {
+                const error = await response.text();
+                console.error("❌ Erro ao cadastrar:", error);
+                alert("Erro ao cadastrar usuário: " + error);
+            }
+        } catch (e) {
+            console.error("🔥 Erro inesperado na requisição:", e);
+            alert("Erro inesperado ao enviar os dados.");
+        }
+    };
+</script>
