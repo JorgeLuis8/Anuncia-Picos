@@ -11,6 +11,7 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
 var app = builder.Build();
+builder.WebHost.UseUrls("http://localhost:5009");
 
 // Configura o pipeline de requisição HTTP
 if (!app.Environment.IsDevelopment())
