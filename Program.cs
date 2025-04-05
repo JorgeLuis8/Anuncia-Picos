@@ -3,6 +3,9 @@ using System.Net.Http;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// 🔧 Define a porta para evitar conflito
+builder.WebHost.UseUrls("http://localhost:5009");
+
 // Configurações do CORS para permitir qualquer origem
 builder.Services.AddCors(options =>
 {
@@ -14,13 +17,11 @@ builder.Services.AddCors(options =>
     });
 });
 
-// Adiciona os componentes do Blazor
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
 var app = builder.Build();
 
-// Configura o pipeline de requisição HTTP
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
@@ -31,7 +32,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseCors("AllowAll");
 
-app.UseAntiforgery(); // 🔥 Adicionado para evitar erro 500 relacionado a antiforgery
+app.UseAntiforgery();
 
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
