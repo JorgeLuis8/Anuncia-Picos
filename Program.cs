@@ -3,6 +3,9 @@ using System.Net.Http;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Configura a URL ANTES de construir o app
+builder.WebHost.UseUrls("http://localhost:5009");
+
 // Registra o HttpClient
 builder.Services.AddHttpClient();
 
@@ -11,7 +14,6 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
 var app = builder.Build();
-builder.WebHost.UseUrls("http://localhost:5009");
 
 // Configura o pipeline de requisição HTTP
 if (!app.Environment.IsDevelopment())
@@ -23,11 +25,8 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();  // Redireciona para HTTPS
 app.UseStaticFiles();       // Para servir arquivos estáticos como JS, CSS, imagens
 
-// Coloque o middleware de antiforgery depois de UseRouting e antes de UseEndpoints
-app.UseRouting(); 
+app.UseRouting();
 
 app.UseAntiforgery(); // Adiciona o middleware antiforgery
-
-
 
 app.Run();
