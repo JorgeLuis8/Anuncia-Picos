@@ -3,38 +3,30 @@ using System.Net.Http;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// 🔧 Define a porta para evitar conflito
-builder.WebHost.UseUrls("http://localhost:5009");
+// Registra o HttpClient
+builder.Services.AddHttpClient();
 
-// Configurações do CORS para permitir qualquer origem
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowAll", policy =>
-    {
-        policy.AllowAnyOrigin()
-              .AllowAnyMethod()
-              .AllowAnyHeader();
-    });
-});
-
+// Adiciona os componentes do Blazor
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
 var app = builder.Build();
 
+// Configura o pipeline de requisição HTTP
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
-    app.UseHsts();
+    app.UseHsts(); // Política de segurança para HSTS (HTTP Strict Transport Security)
 }
 
-app.UseHttpsRedirection();
-app.UseStaticFiles();
-app.UseCors("AllowAll");
+app.UseHttpsRedirection();  // Redireciona para HTTPS
+app.UseStaticFiles();       // Para servir arquivos estáticos como JS, CSS, imagens
 
-app.UseAntiforgery();
+// Coloque o middleware de antiforgery depois de UseRouting e antes de UseEndpoints
+app.UseRouting(); 
 
-app.MapRazorComponents<App>()
-    .AddInteractiveServerRenderMode();
+app.UseAntiforgery(); // Adiciona o middleware antiforgery
+
+
 
 app.Run();
