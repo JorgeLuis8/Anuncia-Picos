@@ -85,9 +85,8 @@ form {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 20px;
 }
-
 /* Estilo dos labels dentro do formulário */
 .input-container label {
   font-size: 12px; /* Reduz o tamanho da fonte dos labels */
@@ -97,15 +96,18 @@ form {
 
 /* Estilo dos inputs dentro do formulário */
 input {
-  width: 100%;
-  padding: 6px; /* Reduz o padding dos campos */
+  width: 100%; /* Mantém a largura */
+  padding: 3px; /* Reduz ainda mais o padding */
+  height: 28px; /* Diminui a altura */
   margin: 0;
   border: none;
-  border-bottom: 2px solid #ddd; /* Borda apenas embaixo */
+  border-bottom: 2px solid #ddd;
   background-color: transparent;
-  font-size: 13px; /* Reduz o tamanho da fonte */
+  font-size: 10px; /* Fonte menor */
   color: #333;
+
 }
+
 
 input:focus {
   border-bottom-color: none;
@@ -209,7 +211,7 @@ input:focus {
   }
 
   input {
-    padding: 12px;
+    padding: 10px;
     font-size: 14px;
   }
 
@@ -227,21 +229,22 @@ input:focus {
 /* Responsividade para telas com largura igual ou superior a 1918px */
 @media screen and (min-width: 1918px) {
   .input-container label {
-    font-size: 16px;  /* Aumenta o tamanho da fonte dos labels */
+    font-size: 14px;  /* Aumenta o tamanho da fonte dos labels */
   }
 
   input {
-    padding: 16px;  /* Aumenta o padding para os campos de entrada */
-    font-size: 18px; /* Aumenta o tamanho da fonte para os campos de entrada */
+    width: 100%;
+    padding: 12px;  /* Aumenta o padding para os campos de entrada */
+    font-size: 12px; /* Aumenta o tamanho da fonte para os campos de entrada */
   }
 
   .register-btn {
-    font-size: 18px; /* Aumenta o tamanho da fonte do botão */
+    font-size: 13px; /* Aumenta o tamanho da fonte do botão */
     padding: 15px 30px; /* Aumenta o tamanho do botão */
   }
 
   .reclink, .cadlink {
-    font-size: 18px; /* Aumenta o tamanho da fonte dos links */
+    font-size: 13px; /* Aumenta o tamanho da fonte dos links */
     padding: 12px 30px; /* Aumenta o padding dos links */
   }
 }

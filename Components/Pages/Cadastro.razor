@@ -64,47 +64,48 @@
         const confirmPassword = document.getElementById("ConfirmPassword").value;
         const statusDiv = document.getElementById("statusMessage");
 
-        // Limpar mensagem anterior
         statusDiv.textContent = "";
 
-        // Validações básicas silenciosas
         if (cpf.length !== 11 || phone.length !== 11 || password !== confirmPassword) {
             statusDiv.style.color = "red";
             statusDiv.textContent = "Cadastro não realizado. Verifique seus dados.";
             return;
         }
 
-        const user = {
-            name,
-            email,
-            cpf,
-            phone,
-            password,
-            confirmPassword
+        const payload = {
+            name: name,
+            email: email,
+            password: password,
+            confirmPassword: confirmPassword,
+            cpf: cpf,
+            phone: phone
         };
 
         try {
-            const response = await fetch("http://localhost:5255/auth/cadastro
-", {
+            const response = await fetch("http://localhost:5255/auth/cadastro", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                     "Accept": "application/json"
                 },
-                body: JSON.stringify(user)
+                body: JSON.stringify(payload)
             });
 
             if (response.ok) {
-                statusDiv.style.color = "green";
-                statusDiv.textContent = "Cadastro realizado com sucesso!";
-                document.getElementById("registerForm").reset();
+                const result = await response.json();
+                const token = result.token;
+
+                // Armazena o token e redireciona
+                localStorage.setItem("authToken", token);
+                window.location.href = `/Home?token=${token}`;
             } else {
+                const errorText = await response.text();
                 statusDiv.style.color = "red";
-                statusDiv.textContent = "Cadastro não realizado. Verifique seus dados.";
+                statusDiv.textContent = "Erro: " + (errorText || "Cadastro não realizado.");
             }
         } catch (error) {
             statusDiv.style.color = "red";
-            statusDiv.textContent = "Cadastro não realizado. Tente novamente mais tarde.";
+            statusDiv.textContent = "Erro ao se conectar com o servidor.";
         }
     });
 </script>
