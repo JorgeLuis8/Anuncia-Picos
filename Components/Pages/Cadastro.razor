@@ -1,99 +1,111 @@
 @page "/Cadastro"
-@inject IJSRuntime JS
 
 <div class="register-container">
     <div class="left-side">
         <h1>Anuncia Picos!</h1>
         <img src="images/logo.png" alt="Logo Anuncia Picos">
-        <h2>Obrigado por fazer parte do Anuncia Picos! Estamos felizes em tê-lo conosco </h2>
+        <h2>Obrigado por fazer parte do Anuncia Picos! Estamos felizes em tê-lo conosco</h2>
         <p>"Descubra ofertas incríveis e negocie com facilidade no Anuncia Picos!"</p>
     </div>
 
     <div class="right-side">
         <h3>Cadastre-se gratuitamente e aproveite as melhores oportunidades</h3>
 
-        <form onsubmit="return false;">
+        <div id="statusMessage" style="position: relative; font-size: 14px; text-align: center; height: 20px; margin: 10px 0;"></div>
+
+        <form id="registerForm">
             <div class="input-container">
                 <label for="Name">Nome Completo:</label>
-                <input type="text" id="Name" @bind="user.Name" required />
+                <input type="text" id="Name" placeholder="Digite seu nome completo" required>
             </div>
 
             <div class="input-container">
                 <label for="Email">Email:</label>
-                <input type="email" id="Email" @bind="user.Email" required />
+                <input type="email" id="Email" placeholder="Email" required>
             </div>
 
             <div class="input-container">
                 <label for="CPF">CPF:</label>
-                <input type="text" id="CPF" @bind="user.CPF" maxlength="11" required />
+                <input type="text" id="CPF" placeholder="Digite seu CPF" maxlength="11" required>
             </div>
 
             <div class="input-container">
                 <label for="Phone">Telefone:</label>
-                <input type="tel" id="Phone" @bind="user.Phone" maxlength="11" required />
+                <input type="tel" id="Phone" placeholder="Digite seu telefone" maxlength="11" required>
             </div>
 
             <div class="input-container">
                 <label for="Password">Senha:</label>
-                <input type="password" id="Password" @bind="user.Password" required />
+                <input type="password" id="Password" placeholder="Digite sua senha" required>
             </div>
 
             <div class="input-container">
                 <label for="ConfirmPassword">Confirme sua Senha:</label>
-                <input type="password" id="ConfirmPassword" @bind="user.ConfirmPassword" required />
+                <input type="password" id="ConfirmPassword" placeholder="Confirme sua senha" required>
             </div>
 
             <div class="form-actions">
                 <a href="/Login" class="cadlink">Já tem uma conta? FAÇA LOGIN</a>
-                <button type="button" class="register-btn" @onclick="SubmitWithJS">CADASTRAR</button>
+                <button type="submit" class="register-btn">CADASTRAR</button>
             </div>
         </form>
     </div>
 </div>
 
-@code {
-    private UserModel user = new UserModel();
-
-    private async Task SubmitWithJS()
-    {
-        await JS.InvokeVoidAsync("sendRegisterData", user);
-    }
-
-    public class UserModel
-    {
-        public string? Name { get; set; }
-        public string? Email { get; set; }
-        public string? CPF { get; set; }
-        public string? Phone { get; set; }
-        public string? Password { get; set; }
-        public string? ConfirmPassword { get; set; }
-    }
-}
 <script>
-    window.sendRegisterData = async function (user) {
-        console.log("📤 Enviando dados para o servidor:", user);
+    document.getElementById("registerForm").addEventListener("submit", async function (event) {
+        event.preventDefault();
+
+        const name = document.getElementById("Name").value.trim();
+        const email = document.getElementById("Email").value.trim();
+        const cpf = document.getElementById("CPF").value.trim();
+        const phone = document.getElementById("Phone").value.trim();
+        const password = document.getElementById("Password").value;
+        const confirmPassword = document.getElementById("ConfirmPassword").value;
+        const statusDiv = document.getElementById("statusMessage");
+
+        statusDiv.textContent = "";
+
+        if (cpf.length !== 11 || phone.length !== 11 || password !== confirmPassword) {
+            statusDiv.style.color = "red";
+            statusDiv.textContent = "Cadastro não realizado. Verifique seus dados.";
+            return;
+        }
+
+        const payload = {
+            name: name,
+            email: email,
+            password: password,
+            confirmPassword: confirmPassword,
+            cpf: cpf,
+            phone: phone
+        };
 
         try {
-            const response = await fetch("http://localhost:5255//auth/cadastro", {
+            const response = await fetch("http://localhost:5255/auth/cadastro", {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
                 },
-                body: JSON.stringify(user)
+                body: JSON.stringify(payload)
             });
 
             if (response.ok) {
                 const result = await response.json();
-                console.log("✅ Cadastro realizado com sucesso!", result);
-                alert("Cadastro realizado com sucesso!");
+                const token = result.token;
+
+                // Armazena o token e redireciona
+                localStorage.setItem("authToken", token);
+                window.location.href = `/Home?token=${token}`;
             } else {
-                const error = await response.text();
-                console.error("❌ Erro ao cadastrar:", error);
-                alert("Erro ao cadastrar usuário: " + error);
+                const errorText = await response.text();
+                statusDiv.style.color = "red";
+                statusDiv.textContent = "Erro: " + (errorText || "Cadastro não realizado.");
             }
-        } catch (e) {
-            console.error("🔥 Erro inesperado na requisição:", e);
-            alert("Erro inesperado ao enviar os dados.");
+        } catch (error) {
+            statusDiv.style.color = "red";
+            statusDiv.textContent = "Erro ao se conectar com o servidor.";
         }
-    };
+    });
 </script>

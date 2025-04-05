@@ -1,0 +1,41 @@
+@page "/Home"
+
+<div class="home-container">
+    <h1>Bem-vindo ao Anuncia Picos!</h1>
+    <p id="welcomeMessage">Verificando login...</p>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const token = localStorage.getItem("authToken"); // Pegamos o token salvo
+
+        const welcomeEl = document.getElementById("welcomeMessage");
+
+        if (token) {
+            try {
+                const payloadBase64 = token.split('.')[1]; // Pegamos a segunda parte do JWT
+                const payloadDecoded = atob(payloadBase64); // Decodificamos de Base64
+                const payload = JSON.parse(payloadDecoded); // Transformamos em JSON
+
+                console.log("Payload JWT:", payload); // Log para debug
+
+                // Pegamos o nome do usuário do campo 'sub'
+                const nome = payload.sub || "Usuário";
+
+                welcomeEl.textContent = `Olá, ${nome}! Você está logado.`;
+            } catch (error) {
+                console.error("Erro ao decodificar o token:", error);
+                welcomeEl.textContent = "Erro ao carregar o usuário. Faça login novamente.";
+                localStorage.removeItem("authToken");
+                setTimeout(() => {
+                    window.location.href = "/Login";
+                }, 2000);
+            }
+        } else {
+            welcomeEl.textContent = "Você não está logado. Redirecionando para login...";
+            setTimeout(() => {
+                window.location.href = "/Login";
+            }, 2000);
+        }
+    });
+</script>
