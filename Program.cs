@@ -3,8 +3,16 @@ using System.Net.Http;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Registra o HttpClient
-builder.Services.AddHttpClient();
+// Configurações do CORS para permitir qualquer origem
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
+});
 
 // Adiciona os componentes do Blazor
 builder.Services.AddRazorComponents()
@@ -16,16 +24,14 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
-    app.UseHsts(); // Política de segurança para HSTS (HTTP Strict Transport Security)
+    app.UseHsts();
 }
 
-app.UseHttpsRedirection();  // Redireciona para HTTPS
-app.UseStaticFiles();       // Para servir arquivos estáticos como JS, CSS, imagens
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+app.UseCors("AllowAll");
 
-// Coloque o middleware de antiforgery depois de UseRouting e antes de UseEndpoints
-app.UseRouting(); 
-
-app.UseAntiforgery(); // Adiciona o middleware antiforgery
+app.UseAntiforgery(); // 🔥 Adicionado para evitar erro 500 relacionado a antiforgery
 
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
