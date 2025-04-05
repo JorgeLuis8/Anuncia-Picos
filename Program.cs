@@ -1,25 +1,31 @@
 using Anuncia_Picos.Components;
 using System.Net.Http;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Registra o HttpClient
+builder.Services.AddHttpClient();
+
+// Adiciona os componentes do Blazor
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Configura o pipeline de requisição HTTP
 if (!app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Error", createScopeForErrors: true);
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
+    app.UseExceptionHandler("/Error");
+    app.UseHsts(); // Política de segurança para HSTS (HTTP Strict Transport Security)
 }
 
-app.UseHttpsRedirection();
+app.UseHttpsRedirection();  // Redireciona para HTTPS
+app.UseStaticFiles();       // Para servir arquivos estáticos como JS, CSS, imagens
 
-app.UseStaticFiles();
-app.UseAntiforgery();
+// Coloque o middleware de antiforgery depois de UseRouting e antes de UseEndpoints
+app.UseRouting(); 
+
+app.UseAntiforgery(); // Adiciona o middleware antiforgery
 
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();

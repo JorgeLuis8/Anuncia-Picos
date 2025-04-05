@@ -1,26 +1,33 @@
 @page "/TrocarSenha"
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-    <div class="container">
-        <div class="form">
-            <h2>Redefinir Senha</h2>
-            <p>Digite sua nova senha para redefinir o acesso à sua conta.</p>
-            <form id="recoveryForm">
-                <input type="password" id="password" placeholder="Nova senha" required>
-                <input type="password" id="confirmPassword" placeholder="Confirme sua senha" required>
-                <button type="submit">Alterar Senha</button>
-                
-                <p class="message" id="message"></p>
-            </form>
-        </div>
+<div class="register-container">
+    <div class="left-side">
+        <h1>Anuncia Picos!</h1>
+        <img src="images/logo.png" alt="Logo Anuncia Picos">
+        <h2>Encontre as melhores oportunidades perto de você no Anuncia Picos!</h2>
+        <p>"Descubra ofertas incríveis e negocie com facilidade no Anuncia Picos!"</p>
     </div>
+    <div class="right-side">
+        <h3>Redefina sua senha</h3>
+        <form id="registerForm">
+           
 
-</body>
-</html>
+            <!-- Novo campo de senha -->
+            <div class="input-container">
+                <label for="Password">Nova Senha:</label>
+                <input type="password" id="Password" placeholder="Digite sua nova senha" required>
+            </div>
+
+            <!-- Confirmar senha -->
+            <div class="input-container">
+                <label for="ConfirmPassword">Confirmar Senha:</label>
+                <input type="password" id="ConfirmPassword" placeholder="Confirme sua nova senha" required>
+            </div>
+
+            <div class="form-actions">
+              
+                <button type="submit" class="register-btn">REDIFINIR SENHA</button>
+            </div>
+
+        </form>
+    </div>
+</div>

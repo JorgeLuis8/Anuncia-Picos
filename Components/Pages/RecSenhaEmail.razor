@@ -1,24 +1,25 @@
 @page "/RecSenhaEmail"
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-        <div class="container">
-        <div class="form">
-            <h2>Recuperar Senha</h2>
-            <p>Digite seu e-mail para receber um link de redefinição de senha.</p>
-            <form id="recoveryForm">
-                <input type="email" id="email" placeholder="E-mail" required>
-                <button type="submit">Enviar</button>
-                <NavLink class="cadlink" href="/TrocarSenha">Não tem conta? Cadastre-se</NavLink>
-                <p class="message" id="message"></p>
-            </form>
-        </div>
+<div class="register-container">
+    <div class="left-side">
+        <h1>Anuncia Picos!</h1>
+        <img src="images/logo.png" alt="Logo Anuncia Picos">
+        <h2>Encontre as melhores oportunidades perto de você no Anuncia Picos!</h2>
+        <p>"Descubra ofertas incríveis e negocie com facilidade no Anuncia Picos!"</p>
     </div>
-</body>
-</html>
+    <div class="right-side">
+        <h3>Digite seu e-mail para receber instruções de recuperação de senha e voltar a acessar sua conta.</h3>
+
+        <form id="recSenhaForm">
+            <div class="input-container">
+                <label for="Email">Email:</label>
+                <input type="email" id="Email" placeholder="Digite seu email" required>
+            </div>
+
+            <div class="form-actions">
+
+                <button type="submit" class="register-btn">ENVIAR</button>
+            </div>
+
+        </form>
+    </div>
+</div>

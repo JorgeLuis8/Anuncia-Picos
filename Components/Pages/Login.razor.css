@@ -115,7 +115,14 @@ input:focus {
     margin-right: 10px;
     font-size: 18px;
 }
+.facebook-btn:hover{
+  background-color: rgba(94, 94, 212, 0.329);
 
+}
+
+.google-btn:hover{
+  background-color: rgba(94, 94, 212, 0.329);
+}
 /* Sem efeito de hover */
 
 /* Estilo dos botões de login */
@@ -140,7 +147,7 @@ input:focus {
 
 /* Estilo do link "Cadastrar-se" */
 .cadlink {
-    color: #4A90E2; /* Cor do texto do link */
+    color: #7B76F1; /* Cor do texto do link */
     text-decoration: none;
     font-size: 14px;
     font-weight: bold;
@@ -277,4 +284,84 @@ input:focus {
     margin-top: 15px; /* Espaçamento entre o link e o botão */
     width: 100%; /* Garante que ocupe toda a largura disponível */
     text-align: center; /* Centraliza o texto */
+}
+/* Configuração do layout para ocupar toda a altura da tela */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden; /* Impede rolagem da página */
+}
+
+/* Responsividade para telas menores (max-width: 1000px) */
+@media screen and (max-width: 1050px) {
+  .login-container {
+    flex-direction: column;  /* Organiza os elementos na coluna */
+    height: auto;  /* Garante que o container tenha a altura ajustada */
+  }
+
+  .left-side, .right-side {
+    width: 100%;
+    height: auto;
+  }
+
+  .right-side {
+    padding: 20px;
+    gap: 15px;
+    text-align: center; /* Centraliza os botões */
+  }
+
+  .google-btn, .facebook-btn {
+    width: 80%; /* Ajusta a largura para que os botões não fiquem gigantes */
+    margin: 10px 0; /* Adiciona espaçamento entre os botões */
+  }
+
+  .login-btn, .google-btn, .facebook-btn {
+    font-size: 16px;
+    padding: 12px 20px;
+  }
+
+  .login-btn {
+    font-size: 16px;
+    padding: 12px 20px;
+  }
+
+  .reclink, .cadlink {
+    font-size: 14px;
+    padding: 10px 20px;
+  }
+}
+
+/* Responsividade para telas muito pequenas (max-width: 480px) */
+@media screen and (max-width: 480px) {
+  .login-container {
+    flex-direction: column;  /* Organiza os elementos na coluna */
+    height: auto;
+  }
+
+  .left-side, .right-side {
+    width: 100%;
+    height: auto;
+  }
+
+  .right-side {
+    padding: 15px;
+    gap: 10px;
+    text-align: center; /* Centraliza os botões */
+  }
+
+  .google-btn, .facebook-btn {
+    width: 90%; /* Ajusta a largura para 90% em telas menores */
+    margin: 10px 0; /* Adiciona espaçamento entre os botões */
+  }
+
+  .login-btn {
+    font-size: 14px;
+    padding: 10px 20px;
+  }
+
+  .reclink, .cadlink {
+    font-size: 14px;
+    padding: 8px 20px;
+  }
 }

@@ -1,51 +1,99 @@
 @page "/Cadastro"
+@inject IJSRuntime JS
+
 <div class="register-container">
     <div class="left-side">
         <h1>Anuncia Picos!</h1>
-        <img src="images/Logo.png" alt="Logo Anuncia Picos">
+        <img src="images/logo.png" alt="Logo Anuncia Picos">
         <h2>Obrigado por fazer parte do Anuncia Picos! Estamos felizes em tê-lo conosco </h2>
         <p>"Descubra ofertas incríveis e negocie com facilidade no Anuncia Picos!"</p>
     </div>
+
     <div class="right-side">
         <h3>Cadastre-se gratuitamente e aproveite as melhores oportunidades</h3>
 
-        <form id="registerForm">
+        <form onsubmit="return false;">
             <div class="input-container">
                 <label for="Name">Nome Completo:</label>
-                <input type="text" id="Name" placeholder="Digite seu nome completo" required>
+                <input type="text" id="Name" @bind="user.Name" required />
             </div>
 
             <div class="input-container">
                 <label for="Email">Email:</label>
-                <input type="email" id="Email" placeholder="Email" required>
+                <input type="email" id="Email" @bind="user.Email" required />
             </div>
 
             <div class="input-container">
                 <label for="CPF">CPF:</label>
-                <input type="text" id="CPF" placeholder="Digite seu CPF" required>
+                <input type="text" id="CPF" @bind="user.CPF" maxlength="11" required />
             </div>
 
             <div class="input-container">
                 <label for="Phone">Telefone:</label>
-                <input type="tel" id="Phone" placeholder="Digite seu telefone" required>
+                <input type="tel" id="Phone" @bind="user.Phone" maxlength="11" required />
             </div>
 
-            <!-- Senha e Confirmação de Senha movidos para o final -->
             <div class="input-container">
                 <label for="Password">Senha:</label>
-                <input type="password" id="Password" placeholder="Digite sua senha" required>
+                <input type="password" id="Password" @bind="user.Password" required />
             </div>
 
             <div class="input-container">
                 <label for="ConfirmPassword">Confirme sua Senha:</label>
-                <input type="password" id="ConfirmPassword" placeholder="Confirme sua senha" required>
+                <input type="password" id="ConfirmPassword" @bind="user.ConfirmPassword" required />
             </div>
 
             <div class="form-actions">
                 <a href="/Login" class="cadlink">Já tem uma conta? FAÇA LOGIN</a>
-                <button type="submit" class="register-btn">CADASTRAR</button>
+                <button type="button" class="register-btn" @onclick="SubmitWithJS">CADASTRAR</button>
             </div>
-
         </form>
     </div>
 </div>
+
+@code {
+    private UserModel user = new UserModel();
+
+    private async Task SubmitWithJS()
+    {
+        await JS.InvokeVoidAsync("sendRegisterData", user);
+    }
+
+    public class UserModel
+    {
+        public string? Name { get; set; }
+        public string? Email { get; set; }
+        public string? CPF { get; set; }
+        public string? Phone { get; set; }
+        public string? Password { get; set; }
+        public string? ConfirmPassword { get; set; }
+    }
+}
+<script>
+    window.sendRegisterData = async function (user) {
+        console.log("📤 Enviando dados para o servidor:", user);
+
+        try {
+            const response = await fetch("http://localhost:5255//auth/cadastro", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(user)
+            });
+
+            if (response.ok) {
+                const result = await response.json();
+                console.log("✅ Cadastro realizado com sucesso!", result);
+                alert("Cadastro realizado com sucesso!");
+            } else {
+                const error = await response.text();
+                console.error("❌ Erro ao cadastrar:", error);
+                alert("Erro ao cadastrar usuário: " + error);
+            }
+        } catch (e) {
+            console.error("🔥 Erro inesperado na requisição:", e);
+            alert("Erro inesperado ao enviar os dados.");
+        }
+    };
+</script>
