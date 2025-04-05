@@ -1,4 +1,5 @@
 @page "/Login"
+
 <div class="login-container">
     <div class="left-side">
         <h1>Anuncia Picos!</h1>
@@ -6,8 +7,10 @@
         <h2>Encontre as melhores oportunidades perto de você no Anuncia Picos</h2>
         <p>"Descubra ofertas incríveis e negocie com facilidade no Anuncia Picos!"</p>
     </div>
+
     <div class="right-side">
         <h3>Bem-vindo ao Anuncia Picos! Estamos felizes em tê-lo conosco.</h3>
+
         <div class="logins">
             <button class="google-btn"><i class="fab fa-google"></i> Entrar com o Google</button>
             <button class="facebook-btn"><i class="fab fa-facebook-f"></i> Entrar com o Facebook</button>
@@ -27,19 +30,65 @@
                 </div>
             </div>
 
-            <!-- Botão de login centralizado -->
             <button type="submit" class="login-btn">LOGIN</button>
 
-            <!-- Botão "Esqueci minha senha" -->
             <button type="button" class="reclink" onclick="window.location.href='/RecSenhaEmail'">
-  ESQUECI MINHA SENHA!
-</button>
-
-
-
-            <div class="links">
-                <a href="/Cadastro" class="cadlink">Não tem uma conta ainda? CADASTRE-SE</a>
-            </div>
+                ESQUECI MINHA SENHA!
+            </button>
         </form>
+
+        <div class="links">
+            <button type="button" class="cadlink" onclick="window.location.href='/Cadastro'">
+                Não tem uma conta ainda? CADASTRE-SE
+            </button>
+        </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const loginForm = document.getElementById("loginForm");
+
+        loginForm.addEventListener("submit", async function (e) {
+            e.preventDefault();
+
+            const email = document.getElementById("Email").value.trim();
+            const password = document.getElementById("Password").value;
+            
+            try {
+                const response = await fetch("http://localhost:5255/auth/login", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ email, password })
+                });
+
+                if (response.ok) {
+                    const result = await response.json();
+
+                    // Usar mesmo padrão do cadastro:
+                    const token = result.token;
+                    const nome = result.nome;
+
+                    localStorage.setItem("authToken", token);
+                    localStorage.setItem("nome", nome);
+
+                    // Redirecionar para a home com o token na URL
+                    window.location.href = `/Home?token=${token}`;
+                } else {
+                    alert("Email ou senha incorretos!");
+                }
+            } catch (error) {
+                console.error("Erro ao conectar com a API:", error);
+                alert("Erro de conexão. Tente novamente mais tarde.");
+            }
+        });
+
+        document.getElementById("togglePassword").addEventListener("click", function () {
+            const passwordInput = document.getElementById("Password");
+            const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
+            passwordInput.setAttribute("type", type);
+        });
+    });
+</script>
