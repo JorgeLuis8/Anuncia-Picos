@@ -1,8 +1,55 @@
 @page "/Home"
 
-<div class="home-container">
+<div class="home-container" style="padding: 20px;">
     <h1>Bem-vindo ao Anuncia Picos!</h1>
-    
+    <p id="welcomeMessage">Verificando login...</p>
+
+    <div id="conteudo" style="display:none; margin-top: 20px;">
+        <p>Você está autenticado e pode acessar o conteúdo da aplicação.</p>
+        <button onclick="logout()" style="padding: 8px 16px; background-color: #e74c3c; color: white; border: none; border-radius: 5px;">
+            Sair
+        </button>
+    </div>
 </div>
 
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const token = localStorage.getItem("authToken");
+        const welcomeEl = document.getElementById("welcomeMessage");
 
+        if (!token) {
+            welcomeEl.textContent = "Você não está logado. Redirecionando para o login...";
+            setTimeout(() => window.location.href = "/Login", 1500);
+            return;
+        }
+
+        try {
+            const payloadBase64 = token.split('.')[1];
+            const payloadDecoded = atob(payloadBase64);
+            const payload = JSON.parse(payloadDecoded);
+
+            const agora = Math.floor(Date.now() / 1000);
+            if (payload.exp && payload.exp < agora) {
+                welcomeEl.textContent = "Sessão expirada. Redirecionando para o login...";
+                localStorage.removeItem("authToken");
+                setTimeout(() => window.location.href = "/Login", 1500);
+                return;
+            }
+
+            const nome = payload.sub || "Usuário";
+            welcomeEl.textContent = `Olá, ${nome}! Você está logado.`;
+            document.getElementById("conteudo").style.display = "block";
+
+        } catch (error) {
+            console.error("Token inválido:", error);
+            welcomeEl.textContent = "Erro ao verificar login. Redirecionando...";
+            localStorage.removeItem("authToken");
+            setTimeout(() => window.location.href = "/Login", 1500);
+        }
+    });
+
+    function logout() {
+        localStorage.removeItem("authToken");
+        window.location.href = "/Login";
+    }
+</script>
