@@ -3,9 +3,6 @@ using System.Net.Http;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Configura a URL ANTES de construir o app
-builder.WebHost.UseUrls("http://localhost:5009");
-
 // Registra o HttpClient
 builder.Services.AddHttpClient();
 
@@ -28,5 +25,9 @@ app.UseStaticFiles();       // Para servir arquivos estáticos como JS, CSS, ima
 app.UseRouting();
 
 app.UseAntiforgery(); // Adiciona o middleware antiforgery
+
+// Mapeia os componentes Razor para as rotas
+app.MapRazorComponents<App>()
+    .AddInteractiveServerRenderMode();
 
 app.Run();
