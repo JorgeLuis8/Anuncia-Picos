@@ -4,41 +4,43 @@
     justify-content: space-between;
     background-color: #7e6eea;
     color: white;
-    padding: 8px 16px;
-    height: 40px;
+    padding: 0 30px;
+    height: 60px;
   }
   
   .logo {
     font-weight: bold;
-    font-size: 16px;
+    font-size: 18px;
+    flex: 1;
   }
   
   .search-container {
-    flex-grow: 1;
+    flex: 2;
     display: flex;
     justify-content: center;
-    margin: 0 16px;
   }
   
   .search-box {
-    width: 220px;
-    padding: 6px 10px;
+    width: 100%;
+    max-width: 400px;
+    padding: 10px 15px;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     font-size: 14px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   }
   
   .icons {
+    flex: 1;
     display: flex;
-    gap: 16px;
+    justify-content: flex-end;
+    gap: 20px;
   }
   
   .icon {
     color: white;
-    font-size: 18px;
+    font-size: 20px;
     cursor: pointer;
+    text-decoration: none; /* Remove sublinhado de link */
   }
   
-  .icon i {
-    font-size: 18px;
-  }
