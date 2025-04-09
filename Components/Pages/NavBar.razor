@@ -1,16 +1,55 @@
 <div class="navbar">
-  <div class="logo">Anuncia Picos!</div>
+    <div class="logo-area">
+        <div class="logo">Anuncia Picos!</div>
+    </div>
 
-  <div class="search-container">
-    <input type="text" class="search-box" placeholder="Buscar produtos" />
-  </div>
+    <div class="search-container">
+        <input type="text" class="search-box" placeholder="Pesquise por qualquer coisa...">
+        <button class="search-button"><i class="fas fa-search"></i></button>
+    </div>
 
-  <div class="icons">
-    <a href="/perfil" class="icon">
-      <i class="fas fa-user"></i>
-    </a>
-    <a href="/carrinho" class="icon">
-      <i class="fas fa-shopping-cart"></i>
-    </a>
+    <div class="icons">
+        <a href="#" class="icon"><i class="fas fa-shopping-cart"></i><span class="cart-count">2</span></a>
+        <a href="#" class="icon"><i class="fas fa-heart"></i></a>
+        <a href="#" class="icon"><i class="fas fa-user"></i></a>
+    </div>
+</div>
+
+<div class="sub-navbar">
+  <div class="sub-navbar-container">
+    <button class="plan-button" onclick="window.location.href='/Planos'">Escolha um Plano</button>
+
+    <div class="center-categories">
+      <div class="dropdown">
+        <button class="categories-dropdown" onclick="toggleDropdown()">
+          Todas as categorias <i class="fas fa-chevron-down"></i>
+        </button>
+        <div id="dropdown-options" class="dropdown-content">
+          <a href="#">Eletrônicos</a>
+          <a href="#">Imóveis</a>
+          <a href="#">Veículos</a>
+          <a href="#">Moda</a>
+          <a href="#">Serviços</a>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+<script>
+  function toggleDropdown() {
+    document.getElementById("dropdown-options").classList.toggle("show");
+  }
+
+  // Fecha o dropdown ao clicar fora
+  window.onclick = function(event) {
+    if (!event.target.matches('.categories-dropdown')) {
+      var dropdowns = document.getElementsByClassName("dropdown-content");
+      for (var i = 0; i < dropdowns.length; i++) {
+        if (dropdowns[i].classList.contains('show')) {
+          dropdowns[i].classList.remove('show');
+        }
+      }
+    }
+  }
+</script>
+
