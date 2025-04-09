@@ -11,14 +11,14 @@
   </div>
 
   <div class="icons">
-    <a href="#" class="icon">
+    <a href="#" class="icon" onclick="verificarAuthENavegar('/Carrinho')">
       <i class="fas fa-shopping-cart"></i>
       <span class="cart-count">2</span>
     </a>
-    <a href="#" class="icon">
+    <a href="#" class="icon" onclick="verificarAuthENavegar('/Favoritos')">
       <i class="far fa-heart"></i>
     </a>
-    <a href="#" class="icon">
+    <a href="#" class="icon" onclick="verificarAuthENavegar('/Perfil')">
       <i class="far fa-user"></i>
     </a>
   </div>
@@ -26,8 +26,7 @@
 
 <div class="sub-navbar">
   <div class="sub-navbar-container">
-    <a href="/Planos" class="plan-button">Escolha um Plano</a>
-
+    <button class="plan-button" onclick="verificarAuthENavegar('/Planos')">Escolha um Plano</button>
 
     <div class="dropdown">
       <button class="categories-dropdown">Todas as categorias</button>
@@ -40,8 +39,10 @@
     </div>
   </div>
 </div>
+
 <script>
-  document.querySelector('.categories-dropdown').addEventListener('click', function () {
+  document.querySelector('.categories-dropdown').addEventListener('click', function (e) {
+    e.stopPropagation(); // evita fechar ao clicar no botão
     document.querySelector('.dropdown-content').classList.toggle('show');
   });
 
@@ -52,4 +53,32 @@
       document.querySelector('.dropdown-content').classList.remove('show');
     }
   });
+
+  function verificarAuthENavegar(destino) {
+    const token = localStorage.getItem("authToken");
+
+    if (!token) {
+      alert("Você precisa estar logado para acessar essa funcionalidade.");
+      window.location.href = "/Login";
+      return;
+    }
+
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      const agora = Math.floor(Date.now() / 1000);
+      if (payload.exp && payload.exp < agora) {
+        alert("Sessão expirada. Faça login novamente.");
+        localStorage.removeItem("authToken");
+        window.location.href = "/Login";
+        return;
+      }
+
+      // Token válido, redireciona
+      window.location.href = destino;
+    } catch (e) {
+      console.error("Erro no token:", e);
+      localStorage.removeItem("authToken");
+      window.location.href = "/Login";
+    }
+  }
 </script>
