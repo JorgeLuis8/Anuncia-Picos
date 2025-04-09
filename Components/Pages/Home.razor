@@ -1,6 +1,16 @@
 @page "/Home"
 
-<NavBar/>
+<NavBar />
+
+<!-- Estrutura HTML do carrossel -->
+<div class="banner-carousel">
+    <div class="carousel-inner-slide" id="carouselSlide">
+        <img src="images/banner1.jpeg" class="banner-slide" alt="Banner 1">
+        <img src="images/banner2.jpeg" class="banner-slide" alt="Banner 2">
+        <img src="images/banner3.jpeg" class="banner-slide" alt="Banner 3">
+        <img src="images/banner1.jpeg" class="banner-slide" alt="Banner 1 Duplicado"> <!-- duplicado -->
+    </div>
+</div>
 
 <div class="home-container" style="padding: 20px;">
     <h1>Bem-vindo ao Anuncia Picos!</h1>
@@ -22,6 +32,7 @@
     </div>
 </div>
 
+<!-- Script de autenticação -->
 <script>
     let usuarioAutenticado = false;
 
@@ -72,4 +83,32 @@
         localStorage.removeItem("authToken");
         window.location.href = "/Login";
     }
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const slideContainer = document.getElementById("carouselSlide");
+    const slides = document.querySelectorAll(".banner-slide");
+    const totalSlides = slides.length;
+    let currentSlide = 0;
+    const intervalTime = 5000;
+
+    function nextSlide() {
+        currentSlide++;
+        slideContainer.style.transition = "transform 0.8s ease-in-out";
+        slideContainer.style.transform = `translateX(-${currentSlide * 100}vw)`;
+
+        // Quando chegar no último (duplicado), volta para o primeiro real sem transição
+        if (currentSlide === totalSlides - 1) {
+            setTimeout(() => {
+                slideContainer.style.transition = "none";
+                currentSlide = 0;
+                slideContainer.style.transform = `translateX(0)`;
+            }, 800); // espera a transição terminar
+        }
+    }
+
+    // Inicialização
+    setInterval(nextSlide, intervalTime);
+});
 </script>

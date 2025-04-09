@@ -1,0 +1,38 @@
+.banner-carousel {
+    width: 98vw;
+    max-width: 1400px;
+    height: 250px;
+    margin: 20px auto;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.carousel-inner-slide {
+    display: flex;
+    height: 100%;
+    width: max-content;
+    transition: transform 0.8s ease-in-out;
+}
+
+.banner-slide {
+    width: 100vw;
+    max-width: 1400px;
+    height: 100%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .banner-carousel {
+        height: 180px;
+    }
+}
+@media (max-width: 480px) {
+    .banner-carousel {
+        height: 150px;
+        width: 95%;
+    }
+}
