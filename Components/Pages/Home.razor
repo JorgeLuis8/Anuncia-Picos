@@ -1,26 +1,36 @@
 @page "/Home"
 
 <NavBar/>
+
 <div class="home-container" style="padding: 20px;">
     <h1>Bem-vindo ao Anuncia Picos!</h1>
     <p id="welcomeMessage">Verificando login...</p>
 
-    <div id="conteudo" style="display:none; margin-top: 20px;">
-        <p>Você está autenticado e pode acessar o conteúdo da aplicação.</p>
-        <button onclick="logout()" style="padding: 8px 16px; background-color: #e74c3c; color: white; border: none; border-radius: 5px;">
-            Sair
+    <div style="margin-top: 20px;">
+        <p>Você pode navegar, mas precisa estar logado para acessar funcionalidades interativas.</p>
+
+        <button onclick="acaoProtegida()" style="padding: 8px 16px; background-color: #3498db; color: white; border: none; border-radius: 5px;">
+            Ação Protegida
         </button>
+
+        <div id="conteudo" style="display:none; margin-top: 20px;">
+            <p>Você está autenticado e pode acessar o conteúdo completo da aplicação.</p>
+            <button onclick="logout()" style="padding: 8px 16px; background-color: #e74c3c; color: white; border: none; border-radius: 5px;">
+                Sair
+            </button>
+        </div>
     </div>
 </div>
 
 <script>
+    let usuarioAutenticado = false;
+
     document.addEventListener("DOMContentLoaded", () => {
         const token = localStorage.getItem("authToken");
         const welcomeEl = document.getElementById("welcomeMessage");
 
         if (!token) {
-            welcomeEl.textContent = "Você não está logado. Redirecionando para o login...";
-            setTimeout(() => window.location.href = "/Login", 1500);
+            welcomeEl.textContent = "Você está navegando como visitante.";
             return;
         }
 
@@ -31,23 +41,32 @@
 
             const agora = Math.floor(Date.now() / 1000);
             if (payload.exp && payload.exp < agora) {
-                welcomeEl.textContent = "Sessão expirada. Redirecionando para o login...";
+                welcomeEl.textContent = "Sessão expirada. Você está como visitante.";
                 localStorage.removeItem("authToken");
-                setTimeout(() => window.location.href = "/Login", 1500);
                 return;
             }
 
             const nome = payload.sub || "Usuário";
             welcomeEl.textContent = `Olá, ${nome}! Você está logado.`;
             document.getElementById("conteudo").style.display = "block";
+            usuarioAutenticado = true;
 
         } catch (error) {
             console.error("Token inválido:", error);
-            welcomeEl.textContent = "Erro ao verificar login. Redirecionando...";
+            welcomeEl.textContent = "Erro ao verificar login. Acesso limitado como visitante.";
             localStorage.removeItem("authToken");
-            setTimeout(() => window.location.href = "/Login", 1500);
         }
     });
+
+    function acaoProtegida() {
+        if (!usuarioAutenticado) {
+            alert("Você precisa estar logado para realizar esta ação.");
+            window.location.href = "/Login";
+            return;
+        }
+
+        alert("Ação protegida executada com sucesso!");
+    }
 
     function logout() {
         localStorage.removeItem("authToken");
