@@ -8,7 +8,7 @@
         <img src="images/banner1.jpeg" class="banner-slide" alt="Banner 1">
         <img src="images/banner2.jpeg" class="banner-slide" alt="Banner 2">
         <img src="images/banner3.jpeg" class="banner-slide" alt="Banner 3">
-        <img src="images/banner1.jpeg" class="banner-slide" alt="Banner 1 Duplicado"> <!-- duplicado -->
+        <img src="images/banner1.jpeg" class="banner-slide" alt="Banner 1 Duplicado"> 
     </div>
 </div>
 
@@ -89,26 +89,29 @@
 document.addEventListener("DOMContentLoaded", function () {
     const slideContainer = document.getElementById("carouselSlide");
     const slides = document.querySelectorAll(".banner-slide");
-    const totalSlides = slides.length;
-    let currentSlide = 0;
-    const intervalTime = 5000;
+    const slideCount = slides.length;
+    let currentIndex = 0;
+    let interval;
+
+    function goToSlide(index) {
+        const slideWidth = slides[0].clientWidth;
+        slideContainer.style.transition = "transform 0.8s ease-in-out";
+        slideContainer.style.transform = `translateX(-${index * slideWidth}px)`;
+    }
 
     function nextSlide() {
-        currentSlide++;
-        slideContainer.style.transition = "transform 0.8s ease-in-out";
-        slideContainer.style.transform = `translateX(-${currentSlide * 100}vw)`;
+        currentIndex++;
+        goToSlide(currentIndex);
 
-        // Quando chegar no último (duplicado), volta para o primeiro real sem transição
-        if (currentSlide === totalSlides - 1) {
+        if (currentIndex === slideCount - 1) {
             setTimeout(() => {
                 slideContainer.style.transition = "none";
-                currentSlide = 0;
-                slideContainer.style.transform = `translateX(0)`;
-            }, 800); // espera a transição terminar
+                currentIndex = 0;
+                slideContainer.style.transform = `translateX(0px)`;
+            }, 800); // igual ao tempo da transição
         }
     }
 
-    // Inicialização
-    setInterval(nextSlide, intervalTime);
+    interval = setInterval(nextSlide, 5000);
 });
 </script>
